@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!--<appender name="KAFKA" class="ch.qos.logback.ext.spring.DelegatingLogbackAppender" additivity="false">
+    	<cacheMode>off</cacheMode>
+    	<beanName>kafkaAppender</beanName>
+    </appender>-->
+    <appender class="ch.qos.logback.core.ConsoleAppender" name="console" >
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} %-5level %X{idOrq} %X{idOp} [%thread] %logger{36} [%L] - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- Not using any file appender since we will be running in Docker containers -->
+	<!--<logger name="LEAppender" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="KAFKA" />
+	</logger>-->
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    	<file>${log.file.path}</file>
+	    <append>true</append>
+	    <encoder>
+    	  <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+    	</encoder>
+  	</appender>
+  	
+  	<logger name="org.springframework.context.annotation" level="INFO" />
+	
+    <!-- Ideally the appender-ref should be set at logger level -->
+    <root level="INFO">
+        <appender-ref ref="console"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</configuration>

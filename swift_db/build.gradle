@@ -1,0 +1,37 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+
+
+// tag::repositories[]
+repositories {
+	mavenCentral()
+}
+// end::repositories[]
+
+// tag::jar[]
+jar {
+	archiveBaseName = 'gs-gradle'
+	archiveVersion =  '0.1.0'
+}
+dependencies {
+ 	//implementation group: 'log4j', name: 'log4j', version: project.'log4j.version'
+	implementation group: 'com.google.guava', name: 'guava', version: project.'guava.version'
+	implementation group: 'commons-lang', name: 'commons-lang', version: project.'commons-lang.version'
+	implementation group: 'commons-io', name: 'commons-io', version: project.'commons-io.version'
+	
+
+	// https://mvnrepository.com/artifact/org.mapdb/mapdb
+	implementation group: 'org.mapdb', name: 'mapdb', version: project.'mapdb.version'
+	// https://mvnrepository.com/artifact/org.iq80.leveldb/leveldb-api
+	implementation group: 'org.iq80.leveldb', name: 'leveldb-api', version: project.'leveldb.version'
+	// https://mvnrepository.com/artifact/org.iq80.leveldb/leveldb
+	implementation group: 'org.iq80.leveldb', name: 'leveldb', version: project.'leveldb.version'
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation group: 'org.json', name: 'json', version: project.'json.version'
+	
+	implementation group: 'ch.qos.logback', name: 'logback-classic', version: project.'ch.qos.logback.version'
+	
+	implementation group: 'org.rocksdb', name: 'rocksdbjni', version: project.'rocksdb.version'
+}
+
